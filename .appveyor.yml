@@ -4,14 +4,8 @@
 os: Visual Studio 2015
 
 environment:
-  global: { TRAVIS_OS_NAME: windows, CROSS: "", C: "", B: release, T: "", X: "" }
+  global: { TRAVIS_OS_NAME: windows, CROSS: "", C: "", B: debug, T: "", X: "" }
   matrix:
-    - { C: msvc-10.0-x86, CL_VERSION: 16.00, VS_VERSION: 2010 }
-### - { C: msvc-10.0-x64, CL_VERSION: 16.00, VS_VERSION: 2010 } # AppVeyor: x64 compiler is not installed
-    - { C: msvc-11.0-x86, CL_VERSION: 17.00, VS_VERSION: 2012 }
-### - { C: msvc-11.0-x64, CL_VERSION: 17.00, VS_VERSION: 2012 } # AppVeyor: x64 compiler is not installed
-    - { C: msvc-12.0-x86, CL_VERSION: 18.00, VS_VERSION: 2013 }
-    - { C: msvc-12.0-x64, CL_VERSION: 18.00, VS_VERSION: 2013 }
     - { C: msvc-14.0-x86, CL_VERSION: 19.00, VS_VERSION: 2015 }
     - { C: msvc-14.0-x64, CL_VERSION: 19.00, VS_VERSION: 2015 }
     - { C: msvc-15.0-x86, CL_VERSION: 19.10, VS_VERSION: 2017, APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017 }
@@ -50,12 +44,6 @@ install:
 ##- curl -q -L --retry 5 -o config.sub   "http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub;hb=HEAD"
 ##- cp config.guess config.sub ucl-1.03/acconfig/
   # setup compiler
-  - if "%C%"=="msvc-10.0-x86" ( call "c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat" x86 )
-  - if "%C%"=="msvc-10.0-x64" ( call "c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat" amd64 )
-  - if "%C%"=="msvc-11.0-x86" ( call "c:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\vcvarsall.bat" x86 )
-  - if "%C%"=="msvc-11.0-x64" ( call "c:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\vcvarsall.bat" amd64 )
-  - if "%C%"=="msvc-12.0-x86" ( call "c:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86 )
-  - if "%C%"=="msvc-12.0-x64" ( call "c:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" amd64 )
   - if "%C%"=="msvc-14.0-x86" ( call "c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86 )
   - if "%C%"=="msvc-14.0-x64" ( call "c:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" amd64 )
   - if "%C%"=="msvc-15.0-x86" ( call "c:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" x86 )
@@ -93,6 +81,7 @@ build_script:
 
 artifacts:
   # pushing entire folder as a zip archive
-  - path: debug
+  - path: upx.exe
+  - path: upx.pdb
 
 # vim:set ts=2 sw=2 et:
