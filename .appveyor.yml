@@ -70,5 +70,8 @@ artifacts:
   # pushing entire folder as a zip archive
   - path: .\upx.exe
   - path: .\upx.pdb
+  - path: .\
+  - path: /c/projects/build/msvc-15.0-x86/debug/upx
+  - path: c:\projects\build\msvc-15.0-x86\debug\upx
 
 # vim:set ts=2 sw=2 et:
