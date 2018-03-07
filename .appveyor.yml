@@ -66,5 +66,6 @@ artifacts:
   - path: .\upx.pdb
   - path: msvc-15.0-x86/debug/upx
   - path: msvc-15.0-x86\debug\upx
+  - path: c:\projects\upx\build
 
 # vim:set ts=2 sw=2 et:
