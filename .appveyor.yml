@@ -36,15 +36,9 @@ install:
 
 build_script:
   - cd c:\projects\upx
-  - if "%C%"=="gcc-4.9-m32" set PATH=c:\cygwin\bin;%PATH%
-  - if "%C%"=="gcc-4.9-m32" bash -x ./.github/travis_build.sh
-  - if "%C%"=="gcc-4.9-m32" exit
-  - if "%C%"=="gcc-4.9-m64" set PATH=c:\cygwin\bin;%PATH%
-  - if "%C%"=="gcc-4.9-m64" bash -x ./.github/travis_build.sh
-  - if "%C%"=="gcc-4.9-m64" exit
   # setup directories following the VPATH build in travis_build.sh
   - where cl & where link
-  - set BDIR=c:\projects\build\%C%\%B%
+  - set BDIR=c:\projects\upx\build\%C%\%B%
   - md %BDIR% %BDIR%\ucl-1.03 %BDIR%\upx %BDIR%\upx-testsuite %BDIR%\zlib-1.2.8
   - set DEFS=-D_CRT_SECURE_NO_WARNINGS
   - git rev-parse --short=12 HEAD > %BDIR%\upx\.GITREV.txt
@@ -70,9 +64,5 @@ artifacts:
   # pushing entire folder as a zip archive
   - path: .\upx.exe
   - path: .\upx.pdb
-  - path: .\
-  - path: ..\build\msvc-15.0-x86\debug\upx
-  - path: ../build/msvc-15.0-x86/debug/upx
-  - path: c:\projects\build\msvc-15.0-x86\debug\upx
 
 # vim:set ts=2 sw=2 et:
